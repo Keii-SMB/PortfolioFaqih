@@ -1,3 +1,12 @@
+function pageReveal() {
+  const tl = gsap.timeline();
+  tl.from("header", { y: -30, opacity: 0, duration: 0.6, ease: "power3.out" })
+    .from("main", { y: 20, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+    .from("footer", { opacity: 0, duration: 0.5 }, "-=0.4");
+}
+barba.hooks.afterEnter(() => pageReveal());
+
+
 barba.init({
   
   transitions: [{
@@ -81,3 +90,83 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power3.out"
   });
 });
+
+window.addEventListener("scroll", () => {
+  const spline = document.querySelector(".spline");
+  const scrollY = window.scrollY;
+  gsap.to(spline, {
+    y: scrollY * 0.3, 
+    ease: "power1.out",
+    duration: 0.4
+  });
+});
+
+function animateHomeText() {
+  const title = document.querySelector(".banner-content h1");
+  const subtitle = document.querySelector(".banner-content p");
+
+  if (title && subtitle) {
+    gsap.set([title, subtitle], { opacity: 0, y: 30 });
+
+    gsap.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      delay: 0.6,
+    });
+
+    gsap.to(subtitle, {
+      opacity: 1,
+      y: 0,
+      duration: 1.5,
+      ease: "power3.out",
+      delay: 1,
+    });
+  }
+}
+
+window.addEventListener("load", () => {
+  const container = document.querySelector("[data-barba-namespace='home']");
+  if (container) animateHomeText();
+});
+
+barba.hooks.afterEnter((data) => {
+  if (data.next.namespace === "home") {
+    animateHomeText();
+  }
+});
+
+
+let currentScroll = window.scrollY;
+let targetScroll = window.scrollY;
+let isTicking = false;
+
+window.addEventListener("wheel", (e) => {
+  e.preventDefault(); // 
+  targetScroll += e.deltaY; // 
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  targetScroll = Math.max(0, Math.min(maxScroll, targetScroll)); // batasi agar tidak lewat batas
+  if (!isTicking) requestAnimationFrame(smoothScroll);
+}, { passive: false });
+
+function smoothScroll() {
+  isTicking = true;
+
+  currentScroll += (targetScroll - currentScroll) * 0.1;
+
+  window.scrollTo(0, currentScroll);
+
+  if (Math.abs(targetScroll - currentScroll) > 0.5) {
+    requestAnimationFrame(smoothScroll);
+  } else {
+    isTicking = false;
+  }
+}
+
+
+
+
+
+
+
