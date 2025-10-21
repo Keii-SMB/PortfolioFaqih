@@ -32,6 +32,13 @@ body {
   font-weight: 700;
   font-size: clamp(1rem, 5vw, 1.3rem);
   color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logo:hover,
+.logo.active {
+  color: #fff;
 }
 
 .nav-links {
@@ -58,7 +65,7 @@ body {
 .banner {
   position: relative;
   width: 100%;
-  height: 70vh; 
+  height: 100vh; 
   overflow: hidden;
   background: #000;
 }
@@ -442,3 +449,35 @@ footer {
   background-color: #222;
   transform: translateY(-2px);
 }
+
+/* Scrollbar minimalis modern */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e0e0e; /* warna latar belakang scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #444, #222);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #555, #333);
+}
+
+/* Untuk Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #161616 #0e0e0e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
