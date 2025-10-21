@@ -1,4 +1,5 @@
 barba.init({
+  
   transitions: [{
     name: 'cinematic-preload',
     async leave(data) {
@@ -57,12 +58,26 @@ barba.init({
 });
 
 barba.hooks.after((data) => {
-  const spline = document.querySelector('.spline-wrapper');
+  const spline = document.querySelector('.spline');
   if (!spline) return;
 
   if (data.next.namespace === 'home') {
-    gsap.to(spline, { opacity: 1, duration: 0.5, pointerEvents: "auto" });
+    gsap.to(spline, { opacity: 1, duration: 0.6, ease: "power2.out" });
   } else {
-    gsap.to(spline, { opacity: 0, duration: 0.5, pointerEvents: "none" });
+    gsap.to(spline, { opacity: 0, duration: 0.6, ease: "power2.in" });
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const spline = document.querySelector(".spline");
+
+  gsap.set(spline, { opacity: 0, scale: 1.02, filter: "blur(10px)" });
+
+  gsap.to(spline, {
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    duration: 4,
+    ease: "power3.out"
+  });
 });
