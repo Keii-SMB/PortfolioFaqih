@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@media (max-width: 768px) {}
 
 * {
   margin: 0;
@@ -28,6 +29,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 600px) {}
 .logo {
   font-weight: 700;
   font-size: clamp(1rem, 5vw, 1.3rem);
@@ -53,6 +55,9 @@ body {
   color: #aaa;
   font-weight: 500;
   transition: 0.3s;
+  gap:15px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .nav-links a:hover,
@@ -402,17 +407,21 @@ footer {
   background: #0d0d0d;
 }
 
-.image-bottom {
-      width: 250px;
-      user-select: none;
-      margin-left: 700px;
-    }
-
-.image-bottom2 {
-    margin-top: -100px;
-    width: 250px;
-    margin-right: 400px;
+.image-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  flex-wrap: wrap;         
+  gap: 20px;             
+  margin-top: 50px;
 }
+
+.image-container img {
+  width: 250px;
+  user-select: none;
+  max-width: 90%; 
+}
+
 
 .halaman-kosong {
   display: flex;
@@ -451,13 +460,13 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Scrollbar minimalis modern */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0e0e0e; /* warna latar belakang scrollbar track */
+  background: #0e0e0e; 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -469,12 +478,15 @@ footer {
   background: linear-gradient(180deg, #555, #333);
 }
 
-/* Untuk Firefox */
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #161616 #0e0e0e;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 
 
