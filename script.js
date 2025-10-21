@@ -146,7 +146,7 @@ window.addEventListener("wheel", (e) => {
   e.preventDefault(); // 
   targetScroll += e.deltaY; // 
   const maxScroll = document.body.scrollHeight - window.innerHeight;
-  targetScroll = Math.max(0, Math.min(maxScroll, targetScroll)); // batasi agar tidak lewat batas
+  targetScroll = Math.max(0, Math.min(maxScroll, targetScroll));
   if (!isTicking) requestAnimationFrame(smoothScroll);
 }, { passive: false });
 
@@ -163,6 +163,7 @@ function smoothScroll() {
     isTicking = false;
   }
 }
+
 
 
 
