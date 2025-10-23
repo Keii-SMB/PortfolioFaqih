@@ -91,16 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-window.addEventListener("scroll", () => {
-  const spline = document.querySelector(".spline");
-  const scrollY = window.scrollY;
-  gsap.to(spline, {
-    y: scrollY * 0.3, 
-    ease: "power1.out",
-    duration: 0.4
-  });
-});
-
 function animateHomeText() {
   const title = document.querySelector(".banner-content h1");
   const subtitle = document.querySelector(".banner-content p");
@@ -136,6 +126,7 @@ barba.hooks.afterEnter((data) => {
     animateHomeText();
   }
 });
+
 
 
 
