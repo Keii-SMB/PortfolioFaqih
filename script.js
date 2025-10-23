@@ -138,32 +138,6 @@ barba.hooks.afterEnter((data) => {
 });
 
 
-let currentScroll = window.scrollY;
-let targetScroll = window.scrollY;
-let isTicking = false;
-
-window.addEventListener("wheel", (e) => {
-  e.preventDefault(); // 
-  targetScroll += e.deltaY; // 
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-  targetScroll = Math.max(0, Math.min(maxScroll, targetScroll));
-  if (!isTicking) requestAnimationFrame(smoothScroll);
-}, { passive: false });
-
-function smoothScroll() {
-  isTicking = true;
-
-  currentScroll += (targetScroll - currentScroll) * 0.1;
-
-  window.scrollTo(0, currentScroll);
-
-  if (Math.abs(targetScroll - currentScroll) > 0.5) {
-    requestAnimationFrame(smoothScroll);
-  } else {
-    isTicking = false;
-  }
-}
-
 
 
 
